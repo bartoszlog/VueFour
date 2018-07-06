@@ -7,24 +7,29 @@
           <div class="robot-name">{{selectedRobot.head.title}} <span v-if="selectedRobot.head.onSale" class="sale">sale!</span></div>
         </div> -->
         <PartSelector :parts="availableParts.heads"
-        position="top"/>
+        position="top"
+        @partSelected="part => selectedRobot.head=part"/>
       </div>
     </div>
     <div class="middle-row">
       <PartSelector 
       :parts="availableParts.arms"
-      position="left"/>
+      position="left"
+      @partSelected="part => selectedRobot.leftArm=part"/>
       <PartSelector 
       :parts="availableParts.torsos"
-      position="center"/>
+      position="center"
+      @partSelected="part => selectedRobot.torso=part"/>
       <PartSelector 
       :parts="availableParts.arms"
-      position="right"/>
+      position="right"
+      @partSelected="part => selectedRobot.rightArm=part"/>
     </div>
     <div class="bottom-row">
       <PartSelector 
       :parts="availableParts.bases"
-      position="bottom"/>
+      position="bottom"
+      @partSelected="part => selectedRobot.base=part"/>
     </div>
     <div>
       <div >
@@ -59,7 +64,7 @@ export default {
     return {
       availableParts,
       cart: [],
-      selectedrobot: {
+      selectedRobot: {
         head: {},
         leftArm: {},
         torso: {},
@@ -72,6 +77,7 @@ export default {
     addRobot() {
       const robot = this.selectedRobot
       const cost = robot.head.cost + robot.leftArm.cost + robot.torso.cost + robot.rightArm.cost + robot.base.cost
+      console.log(robot)
       this.cart.push(Object.assign({}, robot, {cost}))
     },   
   }   
