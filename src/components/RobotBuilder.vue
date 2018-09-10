@@ -1,5 +1,20 @@
 <template>
   <div>
+    <div class="preview">
+      <div class="preview-content">
+        <div class="top-row">
+          <img :src="selectedRobot.head.src"/>
+        </div>
+        <div class="middle-row">
+          <img :src="selectedRobot.leftArm.src" class="rotate-left"/>
+          <img :src="selectedRobot.torso.src"/>
+          <img :src="selectedRobot.rightArm.src" class="rotate-right"/>
+        </div>
+        <div class="bottom-row">
+          <img :src="selectedRobot.base.src"/>
+        </div>
+      </div>
+    </div>
     <button class="add-to-card" @click="addRobot">Add!</button>
     <div class="top-row">
       <div class="top part">
@@ -186,5 +201,26 @@ td {
 }
 .right .next-selector {
   right: -3px;
+}
+.preview {
+  position: absolute;
+  top: 80px;
+  right: 180px;
+  width: 210px;
+  height: 210px;
+  padding: 5px;
+}
+.preview-content {
+  border: 1px solid #999;
+}
+.preview img {
+  width: 80px;
+  height: 80px;
+}
+.rotate-right {
+  transform: rotate(90deg);
+}
+.rotate-left {
+  transform: rotate(-90deg);
 }
 </style>
